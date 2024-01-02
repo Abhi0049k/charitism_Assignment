@@ -1,8 +1,10 @@
 const { Router } = require("express");
 const { getTodos, createTodo, updateTodo, deleteTodo } = require("../controllers/todo.controllers");
+const authorization = require("../middlewares/authorized.middleware");
 
 const router = Router();
 
+router.use(authorization);
 // Get all the todos
 router.get('/', getTodos);
 
@@ -10,9 +12,9 @@ router.get('/', getTodos);
 router.post('/', createTodo);
 
 // Update the todo to completed
-app.patch('/:id', updateTodo);
+router.patch('/:id', updateTodo);
 
 // Delete the todo
-app.delete('/:id', deleteTodo);
+router.delete('/:id', deleteTodo);
 
 module.exports = router;

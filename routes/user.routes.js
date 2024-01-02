@@ -1,9 +1,5 @@
 const { Router } = require("express");
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const userValidation = require("../validations/user.validation");
-const User = require("../models/user.model");
-const { register } = require("../controllers/user.controllers");
+const { register, login } = require("../controllers/user.controllers");
 require('dotenv').config();
 
 const router = Router();
