@@ -11,6 +11,10 @@ const todoSchema = new mongoose.Schema({
     completed: {
         type: Boolean,
         default: false
+    },
+    email: {
+        type: String,
+        required: true
     }
 },{
     versionKey: false

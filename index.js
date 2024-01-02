@@ -1,6 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const PORT = process.env.PORT;
+const userRouter = require('./routes/user.routes');
+const todoRouter = require('./routes/todo.routes');
+const authorized = require('./middlewares/authorized.middleware');
 require('dotenv').config();
 
 const app = express();
@@ -11,6 +14,10 @@ app.use(express.json());
 app.get('/', (req, res)=>{
     res.send({msg: 'Welcome to Charitism Assignment'});
 })
+
+app.use('/user', userRouter);
+
+app.use('/todo', authorized, todoRouter);
 
 app.use((err, req, res, next)=>{
     res.status(err.status || 500).send({Error: err.msg || 'Internal Server Error'})
